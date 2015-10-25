@@ -64,7 +64,7 @@ while c != 'q':
             setup()
         else:
             print "You lost. I`m sorry." 
-            print 'Dealers hand is ' + dHand   
+            print 'Dealers hand is ' + str(dHand)
             dealer = []
             player = []
             setup()
