@@ -14,8 +14,8 @@ def showHand():
 #Gives player and dealer their cards
 def setup():
     for i in range(2):
-        dealDealer = deck[r.randint(1, len(deck)-1)]
-        dealPlayer = deck[r.randint(1, len(deck)-1)]
+        dealDealer = r.choice(deck)
+        dealPlayer = r.choice(deck)
         dealer.append(dealDealer)
         player.append(dealPlayer)
         deck.pop(dealDealer)
@@ -27,13 +27,13 @@ while c != 'q':
     c = raw_input("[H]it [S]tand [Q]uit: ").lower()
    # clear()
     if c == 'h':
-        dealPlayer = deck[r.randint(1, len(deck)-1)]
+        dealPlayer = r.choice(deck)
         player.append(dealPlayer)
         deck.pop(dealPlayer)
         hand = 0
         for i in dealer: hand += i
         if not hand > 17:   #Dealer strategy.
-            dealDealer = deck[r.randint(1, len(deck)-1)]
+            dealDealer = r.choice(deck)
             dealer.append(dealDealer)
             deck.pop(dealDealer)
         hand = 0
@@ -59,15 +59,14 @@ while c != 'q':
         for i in player: pHand += i
         if pHand > dHand:
             print "You won. Congradulations"    #If playerHand (pHand) is greater than dealerHand (dHand) you win...
-            dealer = []
-            player = []
-            setup()
+        elif pHand == dHand:
+            print "Choice"    #If playerHand (pHand) is greater than dealerHand (dHand) you win...
         else:
             print "You lost. I`m sorry." 
             print 'Dealers hand is ' + str(dHand)
-            dealer = []
-            player = []
-            setup()
+        dealer = []
+        player = []
+        setup()
     else:
         if c == 'q':
             gb = raw_input("Bye. [Hit Enter]")
