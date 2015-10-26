@@ -4,7 +4,7 @@ dealer = []
 player = []
 c = ''
     
-def showHand():
+def Hand():
     hand = 0
     for i in player: 
         hand += i #Tally up the total
@@ -23,36 +23,36 @@ def setup():
 
 setup()
 while c != 'q':
-    showHand()
-    c = raw_input("[H]it [S]tand [Q]uit: ").lower()
+    Hand()
+    answer = raw_input("[H]it [S]tand [Q]uit: ").lower()
    # clear()
-    if c == 'h':
+    if answer == 'h':
         dealPlayer = r.choice(deck)
         player.append(dealPlayer)
         deck.pop(dealPlayer)
-        hand = 0
-        for i in dealer: hand += i
-        if not hand > 17:   #Dealer strategy.
+        hand1 = 0
+        for i in dealer: hand1 += i
+        if not hand1 > 17:   #Dealer strategy.
             dealDealer = r.choice(deck)
             dealer.append(dealDealer)
             deck.pop(dealDealer)
-        hand = 0
+        hand1 = 0
         for i in player: 
-            hand += i
-            if hand > 21:
+            hand1 += i
+            if hand1 > 21:
                 print "Dealer won"
                 player = []     #Clear player hand
                 dealer = []     #Clear dealer's hand
                 setup()         #Run the setup again
-        hand = 0
+        hand1 = 0
         for i in dealer: 
-            hand +=i
-            if hand > 21:
+            hand1 +=i
+            if hand1 > 21:
                 print "Dealer lost!"
                 player = []
                 dealer = []
                 setup()
-    elif c == 's':
+    elif answer == 's':
         dHand = 0           #Dealer's hand total
         pHand = 0           #Player's hand total
         for i in dealer: dHand += i
@@ -68,7 +68,7 @@ while c != 'q':
         player = []
         setup()
     else:
-        if c == 'q':
-            gb = raw_input("Bye. [Hit Enter]")
+        if answer == 'q':
+            bye = raw_input("Bye. [Hit Enter]")
         else:
             print "Invalid choice."
